@@ -10,8 +10,7 @@ COPY day_3_input(row) from '/users/yeedle/Downloads/input.txt' with (format text
 -- pos0, pos1, pos2
 -- pos3, char, pos4
 -- pos5, pos6, pos7
--- To get the back the numbers from the deconstructed string, the "Gaps and Islands" approach is used 
--- to identify where a number starts
+-- To reconstruct the numbers from the deconstructed string, the "Gaps and Islands" approach is used 
 
 with
     characters as (
