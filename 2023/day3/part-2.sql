@@ -1,7 +1,7 @@
 create aggregate multiply(bigint) (sfunc = int8mul, stype=bigint);
 
 -- using the same approach as part 1, but now we give IDs to the gears so we can see if any
--- numbers share the same gear
+-- parts share the same gear
 
 with
     characters as (
@@ -36,7 +36,7 @@ with
     ),
     has_adjacent_symbol as (
         select
-            islands.islan part_id, 
+            islands.island part_id, 
             (string_agg(islands.character, ''))::int part_number,
             unnest(
                 array_agg(
@@ -106,7 +106,7 @@ with
         select multiply(part_number) ratio, adjacent_gear_id
         from parts_with_adjacent_gears
         group by adjacent_gear_id
-        having count(*) = 2
+        having count(*) = 2 -- only count if exactly 2 parts are adjacent to the same gear 
     )
 select sum(ratio)
 from gear_ratios;
