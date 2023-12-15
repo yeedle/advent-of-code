@@ -104,4 +104,4 @@ with
         order by islands.island
     )
 select sum(part_number)
-from has_adjacent_symbol
+from has_adjacent_symbol;
