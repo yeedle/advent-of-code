@@ -1,5 +1,3 @@
--- read the file the same way part-1.sql does
-
 -- get counts of eqach item in list 2
 with counts as (
     select list2, count(*) count
