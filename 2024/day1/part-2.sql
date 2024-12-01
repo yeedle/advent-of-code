@@ -1,14 +1,8 @@
--- get counts of eqach item in list 2
-with counts as (
-    select list2, count(*) count
-    from day_1_input
-    group by list2
-), 
--- left join the counts on list 1 and multiply each item in list 1 by the counts of list 2
-similarities as (
-    select list1 * coalesce(count, 0) score
-    from day_1_input
-    left join counts on day_1_input.list1 = counts.list2
+-- use a correlated subquery to get counts for each item in list 1,
+-- multiply by the count, and sum it up
+select sum(list1 * (
+    select count(*)
+     from day_1_input b
+     where b.list2 = a.list1)
 )
-select sum(score)
-from similarities;
+from day_1_input a;
