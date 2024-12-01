@@ -8,10 +8,7 @@ with sorted as (
         row_number() over (order by list1) as rn1,
         row_number() over (order by list2) as rn2
     from day_1_input
-), distances as (
-    select abs(a.list1 - b.list2) as distance
-    from sorted a
-    join sorted b on a.rn1 = b.rn2
 )
-select sum(distance)
-from distances;
+select sum(abs(a.list1 - b.list2))
+from sorted a
+join sorted b on a.rn1 = b.rn2
